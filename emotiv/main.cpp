@@ -108,6 +108,7 @@ void handleFacialExpressions(EmoStateHandle eState) {
 			case FE_FROWN:
 			{
 				std::cout << "Frown up " << upperFaceAmp << std::endl;
+				break;
 			}
 		}
 	}
