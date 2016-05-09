@@ -4,6 +4,7 @@
 #include "community-sdk/include/Iedk.h"
 #include "community-sdk/include/IEmoStateDLL.h"
 #include "community-sdk/include/IedkErrorCode.h"
+#include <wiringPi.h>
 
 #ifdef _WIN32
 #include <conio.h>
@@ -16,14 +17,31 @@
 
 void connect(bool emoComposer, char* emoComposerIp);
 void handleFacialExpressions(EmoStateHandle eState);
+// void turnFanOn();
+// void turnFanOff();
+void turnLedOn();
+void turnLedOff();
+// void turnEngineOn();
+// void turnEngineOff();
+void setupPins();
+
+// static int FAN_PIN = 0;
+// static int FAN_STATE = 0;
+static int LED_PIN = 0;
+static int LED_STATE = 0;
+// static int ENGINE_PIN = 0;
+// static int MOTIONDETECTOR_PIN = 0;
 
 int main(int argc, char **argv)
 {
+	wiringPiSetup();
+	setupPins();
 	EmoEngineEventHandle eEvent = IEE_EmoEngineEventCreate();
 	EmoStateHandle eState = IEE_EmoStateCreate();
 
 	char* composerIp = "127.0.0.1";
 	bool useComposer = false;
+	
 
 	if(argc > 1){
 		composerIp = argv[1];
@@ -89,6 +107,12 @@ void handleFacialExpressions(EmoStateHandle eState) {
 
 	if (IS_FacialExpressionIsBlink(eState)) {
 		std::cout << "Blink" << std::endl;
+		if(LED_STATE == 0){
+			turnLedOn();
+		}
+		else{
+			turnLedOff();
+		}
 	}
 	if (IS_FacialExpressionIsLeftWink(eState)) {
 		std::cout << "Left wink" << std::endl;
@@ -131,3 +155,24 @@ void handleFacialExpressions(EmoStateHandle eState) {
 	}
 }
 
+void setupPins(){
+	pinMode(LED_PIN, OUTPUT);
+	pinMode(FAN_PIN, OUTPUT);
+}
+
+// void turnFanOn(){
+// 	digitalWrite(FAN_PIN, HIGH);
+// 	FAN_STATE = 1;
+// }
+// void turnFanOff(){
+// 	digitalWrite(FAN_PIN, LOW);
+// 	FAN_STATE = 0;
+// }
+void turnLedOn(){
+	digitalWrite(LED_PIN, HIGH);
+	LED_STATE = 1;
+}
+void turnLedOff(){
+	digitalWrite(LED_PIN, LOW);
+	LED_STATE = 0;
+}
