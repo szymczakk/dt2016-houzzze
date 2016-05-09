@@ -28,7 +28,7 @@ void setupPins();
 // const int FAN_PIN = 0;
 // int FAN_STATE = 0;
 const int LED_PIN = 0;
-static int LED_STATE = 0;
+int LED_STATE = 0;
 // const int ENGINE_PIN = 0;
 // const int MOTIONDETECTOR_PIN = 0;
 
@@ -108,7 +108,9 @@ void handleFacialExpressions(EmoStateHandle eState) {
 	if (IS_FacialExpressionIsBlink(eState)) {
 		std::cout << "Blink" << std::endl;
 		if(LED_STATE == 0){
+			std::cout << "Turning led on" << std::endl;
 			turnLedOn();
+			std::cout << "Led ON" <<std::endl;
 		}
 		else{
 			turnLedOff();
@@ -168,8 +170,12 @@ void setupPins(){
 // 	FAN_STATE = 0;
 // }
 void turnLedOn(){
+	std::cout << "turnLedFunction in" << std::endl;
 	digitalWrite(LED_PIN, HIGH);
+	std::cout << "turnLedFunction digitalWrite done" << std::endl;
+	std::cout << "LED_STATE: " << LED_STATE << std::endl;
 	LED_STATE = 1;
+	std::cout << "LED_STATE: " << LED_STATE << std::endl;
 }
 void turnLedOff(){
 	digitalWrite(LED_PIN, LOW);
