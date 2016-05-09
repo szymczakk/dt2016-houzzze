@@ -23,13 +23,15 @@ int main(int argc, char **argv)
 	EmoStateHandle eState = IEE_EmoStateCreate();
 
 	char* composerIp = "127.0.0.1";
+	bool useComposer = false;
 
 	if(argc > 1){
 		composerIp = argv[1];
+		useComposer = true;
 	}
 
 	try {
-		connect(true, composerIp);
+		connect(useComposer, composerIp);
 		while (true)
 		{
 			int state = IEE_EngineGetNextEvent(eEvent);
