@@ -1,8 +1,9 @@
 # 1 Instalation
 
 1. Clone here emotiv community sdk from `https://github.com/Emotiv/community-sdk`
-2. Run `ldconfig -n community-sdk/bin/armhf` to make it linkable for linker
-3. `make`
+2. Instal `wiringPi` from `http://wiringpi.com/`
+3. Run `ldconfig -n community-sdk/bin/armhf` to make it linkable for linker
+4. `make`
 
 
 # 2 Run
