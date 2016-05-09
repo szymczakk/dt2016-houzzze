@@ -157,7 +157,6 @@ void handleFacialExpressions(EmoStateHandle eState) {
 
 void setupPins(){
 	pinMode(LED_PIN, OUTPUT);
-	pinMode(FAN_PIN, OUTPUT);
 }
 
 // void turnFanOn(){
