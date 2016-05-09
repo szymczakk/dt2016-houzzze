@@ -8,10 +8,8 @@
 
 # 2 Run
 
-Emotiv executable require 0 or 2 arguments.
+Emotiv executable require 0 or 1 argument.
 
 * If 0 then it will try to connect to emotiv headset through bluetooth.
-* If 2 then:
-	First one is a 0 or 1 for "Use EmoComposer" (0 no, 1 yes)
-	Second one is string with IP for this composer (ex.: "127.0.0.1")
+* If 1 then it is string with IP for EmoComposer (ex.: "127.0.0.1")
 
