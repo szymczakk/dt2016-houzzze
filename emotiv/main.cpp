@@ -25,15 +25,15 @@ void turnLedOff();
 // void turnEngineOff();
 void setupPins();
 
-// static int FAN_PIN = 0;
-// static int FAN_STATE = 0;
-static int LED_PIN = 0;
-static int LED_STATE = 0;
-// static int ENGINE_PIN = 0;
-// static int MOTIONDETECTOR_PIN = 0;
-
 int main(int argc, char **argv)
 {
+	// static int FAN_PIN = 0;
+	// static int FAN_STATE = 0;
+	static int LED_PIN = 0;
+	static int LED_STATE = 0;
+	// static int ENGINE_PIN = 0;
+	// static int MOTIONDETECTOR_PIN = 0;
+
 	wiringPiSetup();
 	setupPins();
 	EmoEngineEventHandle eEvent = IEE_EmoEngineEventCreate();
