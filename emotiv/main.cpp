@@ -27,7 +27,7 @@ void setupPins();
 
 // const int FAN_PIN = 0;
 // int FAN_STATE = 0;
-const int LED_PIN = 0;
+const int LED_PIN = 4;
 int LED_STATE = 0;
 // const int ENGINE_PIN = 0;
 // const int MOTIONDETECTOR_PIN = 0;
