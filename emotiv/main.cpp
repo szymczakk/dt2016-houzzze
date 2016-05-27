@@ -6,15 +6,6 @@
 #include "community-sdk/include/IedkErrorCode.h"
 #include <wiringPi.h>
 
-#ifdef _WIN32
-#include <conio.h>
-#pragma comment(lib, "Ws2_32.lib")
-#endif
-#if __linux__ || __APPLE__
-#include <unistd.h>
-#include <termios.h>
-#endif
-
 void connect(bool emoComposer, char* emoComposerIp);
 void handleFacialExpressions(EmoStateHandle eState);
 // void turnFanOn();
