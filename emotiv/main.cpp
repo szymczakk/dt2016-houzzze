@@ -8,20 +8,24 @@
 
 void connect(bool emoComposer, char* emoComposerIp);
 void handleFacialExpressions(EmoStateHandle eState);
-// void turnFanOn();
-// void turnFanOff();
+
+void turnFanOn();
+void turnFanOff();
 void turnLedOn();
 void turnLedOff();
-// void turnEngineOn();
-// void turnEngineOff();
+void turnLedRedOn();
+void turnLedRedOff();
+bool anyMove();
+
 void setupPins();
 
-// const int FAN_PIN = 0;
-// int FAN_STATE = 0;
+const int FAN_PIN = 5;
+int FAN_STATE = 0;
 const int LED_PIN = 4;
 int LED_STATE = 0;
-// const int ENGINE_PIN = 0;
-// const int MOTIONDETECTOR_PIN = 0;
+const int MOTIONDETECTOR_PIN = 1;
+const int LED_RED_PIN = 6;
+int LED_RED_STATE = 0;
 
 int main(int argc, char **argv)
 {
@@ -43,6 +47,12 @@ int main(int argc, char **argv)
 		connect(useComposer, composerIp);
 		while (true)
 		{
+			if(anyMove()){
+				turnLedRedOn();
+			}
+			else{
+				turnLedRedOff();
+			}
 			int state = IEE_EngineGetNextEvent(eEvent);
 			if (state == EDK_OK) {
 				IEE_Event_t eventType = IEE_EmoEngineEventGetType(eEvent);
@@ -107,6 +117,12 @@ void handleFacialExpressions(EmoStateHandle eState) {
 	}
 	if (IS_FacialExpressionIsLeftWink(eState)) {
 		std::cout << "Left wink" << std::endl;
+		if(FAN_STATE == 0){
+			turnFanOn();
+		}
+		else{
+			turnFanOff();
+		}
 	}
 	if (IS_FacialExpressionIsRightWink(eState)) {
 		std::cout << "Right wink" << std::endl;
@@ -148,16 +164,18 @@ void handleFacialExpressions(EmoStateHandle eState) {
 
 void setupPins(){
 	pinMode(LED_PIN, OUTPUT);
+	pinMode(LED_RED_PIN, OUTPUT);
+	pinMode(MOTIONDETECTOR_PIN, INPUT);
 }
 
-// void turnFanOn(){
-// 	digitalWrite(FAN_PIN, HIGH);
-// 	FAN_STATE = 1;
-// }
-// void turnFanOff(){
-// 	digitalWrite(FAN_PIN, LOW);
-// 	FAN_STATE = 0;
-// }
+void turnFanOn(){
+	digitalWrite(FAN_PIN, LOW);
+	FAN_STATE = 1;
+}
+void turnFanOff(){
+	digitalWrite(FAN_PIN, HIGH);
+	FAN_STATE = 0;
+}
 void turnLedOn(){
 	digitalWrite(LED_PIN, HIGH);
 	LED_STATE = 1;
@@ -165,4 +183,18 @@ void turnLedOn(){
 void turnLedOff(){
 	digitalWrite(LED_PIN, LOW);
 	LED_STATE = 0;
+}
+
+void turnLedRedOn(){
+	digitalWrite(LED_RED_PIN, HIGH);
+	LED_RED_STATE = 1;
+}
+
+void turnLedRedOff(){
+	digitalWrite(LED_RED_PIN, LOW);
+	LED_RED_STATE = 0;
+}
+
+bool anyMove(){
+	return digitalRead(MOTIONDETECTOR_PIN);
 }
