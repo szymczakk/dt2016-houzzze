@@ -2,8 +2,6 @@
 #include <stdexcept>
 
 #include "community-sdk/include/Iedk.h"
-#include "community-sdk/include/IEmoStateDLL.h"
-#include "community-sdk/include/IedkErrorCode.h"
 #include <wiringPi.h>
 
 void connect(bool emoComposer, char* emoComposerIp);
