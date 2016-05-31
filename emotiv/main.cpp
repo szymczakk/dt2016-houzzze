@@ -1,8 +1,8 @@
 #include <iostream>
 #include <stdexcept>
+#include <wiringPi.h>
 
 #include "community-sdk/include/Iedk.h"
-#include <wiringPi.h>
 
 void connect(bool emoComposer, char* emoComposerIp);
 void handleFacialExpressions(EmoStateHandle eState);
