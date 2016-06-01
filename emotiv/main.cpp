@@ -164,6 +164,7 @@ void setupPins(){
 	pinMode(LED_PIN, OUTPUT);
 	pinMode(LED_RED_PIN, OUTPUT);
 	pinMode(MOTIONDETECTOR_PIN, INPUT);
+	pinMode(FAN_PIN, OUTPUT);
 }
 
 void turnFanOn(){
